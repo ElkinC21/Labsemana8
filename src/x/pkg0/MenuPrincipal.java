@@ -4,17 +4,20 @@
  */
 package x.pkg0;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elkin
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+private UsuarioManejo user;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,10 +43,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Menu Principal");
 
         jButton1.setText("Jugar X-0");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         CerrarSesion.setText("Cerrar Sesion");
+        CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarSesionActionPerformed(evt);
+            }
+        });
 
         Ranking.setText("Ranking");
+        Ranking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RankingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,40 +107,70 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Main_x0 x0 = new Main_x0();
+        String nombre = JOptionPane.showInputDialog(
+        this,
+        "Introduce El Segundo Jugador:",
+        "Iniciar Sesion",
+        JOptionPane.PLAIN_MESSAGE
+    );
+    if (nombre == null) return;  
+
+   String pass = JOptionPane.showInputDialog(
+        this,
+        "Introduce tu contrasena:",
+        "Iniciar Sesion",
+        JOptionPane.PLAIN_MESSAGE
+    );
+    if (pass == null) return;    
+
+    
+    Registro[] lista = user.getUsuarios();
+    boolean coincide = false;
+    for (int i = 0; i < lista.length; i++) {
+        if (lista[i].getNombre().equals(nombre)
+         && lista[i].getpassword().equals(pass)) {
+            coincide = true;
+            break;
+        }
+    }
+
+    
+    if (coincide) {
+       
+        JOptionPane.showMessageDialog(
+            this,
+            "inicio de sesion exitoso",
+            "Bienvenido",
+            JOptionPane.PLAIN_MESSAGE);
+        
+       this.setVisible(false);
+        x0.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(
+            this,
+            "Usuario o contrasena incorrectos.",
+            "Error",
+            JOptionPane.PLAIN_MESSAGE
+        );
+        
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void RankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RankingActionPerformed
+    Rankingz ranking = new Rankingz();
+    }//GEN-LAST:event_RankingActionPerformed
+
+    private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed
+        Menu menu = new Menu();
+        this.setVisible(false);
+        menu.setVisible(true);
+    }//GEN-LAST:event_CerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CerrarSesion;

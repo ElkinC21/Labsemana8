@@ -88,16 +88,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Jugar X-0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CerrarSesion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CerrarSesionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Ranking">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ranking"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RankingActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -8,6 +8,7 @@ package x.pkg0;
 
     
 public class Registro {
+    
     private String nombre;
     private String password;
     private int puntos;

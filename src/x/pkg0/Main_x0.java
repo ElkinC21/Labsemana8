@@ -40,6 +40,7 @@ public class Main_x0 extends javax.swing.JFrame {
         if (!lineas[casilla].getText().equals("X") && !lineas[casilla].getText().equals("O")) {
             if (x) {
                 lineas[casilla].setText("X");
+                jTurno.setText("TURNO = X");
                 x = false;
                 o = true;
                 turnos++;
@@ -47,6 +48,7 @@ public class Main_x0 extends javax.swing.JFrame {
                 return turnos;
             } else if (o) {
                 lineas[casilla].setText("O");
+                jTurno.setText("TURNO = O");
                 x = true;
                 o = false;
                 turnos++;
@@ -150,6 +152,11 @@ public class Main_x0 extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         B8 = new javax.swing.JLabel();
         B7 = new javax.swing.JLabel();
@@ -160,6 +167,8 @@ public class Main_x0 extends javax.swing.JFrame {
         B2 = new javax.swing.JLabel();
         B9 = new javax.swing.JLabel();
         B3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTurno = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -172,12 +181,21 @@ public class Main_x0 extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(jTextPane1);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
         B8.setBackground(new java.awt.Color(255, 255, 255));
+        B8.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B8.setOpaque(true);
         B8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,6 +205,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B7.setBackground(new java.awt.Color(255, 255, 255));
+        B7.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B7.setOpaque(true);
         B7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,6 +215,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B1.setBackground(new java.awt.Color(255, 255, 255));
+        B1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B1.setOpaque(true);
         B1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -205,6 +225,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B5.setBackground(new java.awt.Color(255, 255, 255));
+        B5.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B5.setOpaque(true);
         B5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,6 +235,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B4.setBackground(new java.awt.Color(255, 255, 255));
+        B4.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B4.setOpaque(true);
         B4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,6 +245,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B6.setBackground(new java.awt.Color(255, 255, 255));
+        B6.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B6.setOpaque(true);
         B6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,6 +255,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B2.setBackground(new java.awt.Color(255, 255, 255));
+        B2.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B2.setOpaque(true);
         B2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,6 +265,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B9.setBackground(new java.awt.Color(255, 255, 255));
+        B9.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B9.setOpaque(true);
         B9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -250,6 +275,7 @@ public class Main_x0 extends javax.swing.JFrame {
         });
 
         B3.setBackground(new java.awt.Color(255, 255, 255));
+        B3.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         B3.setOpaque(true);
         B3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,21 +332,52 @@ public class Main_x0 extends javax.swing.JFrame {
                     .addComponent(B3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jLabel2.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
+        jLabel2.setText("Juego De X-O");
+
+        jTurno.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
+        jTurno.setText("TUrno = x ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTurno)))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTurno, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -416,6 +473,13 @@ public class Main_x0 extends javax.swing.JFrame {
     public javax.swing.JLabel B9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel jTurno;
     // End of variables declaration//GEN-END:variables
 }
