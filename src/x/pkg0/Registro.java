@@ -5,15 +5,15 @@
 package x.pkg0;
 
 
-public class Registro {
+
     
-public class Usuario {
+public class Registro {
     private String nombre;
     private String password;
     private int puntos;
 
     
-    public Usuario(String nombre, String password,int puntos) {
+    public Registro(String nombre, String password,int puntos) {
         this.nombre     = nombre;
         this.password =  password;
         this.puntos= puntos;      
@@ -49,4 +49,4 @@ public class Usuario {
     }
 }
 
-}
+

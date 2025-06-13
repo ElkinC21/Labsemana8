@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package x.pkg0;
-
 /**
  *
  * @author elkin
@@ -31,7 +30,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Registro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,10 +54,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Registro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Registro.setText("Registro");
+        Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                RegistroActionPerformed(evt);
             }
         });
 
@@ -73,7 +72,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
@@ -88,7 +87,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(134, Short.MAX_VALUE))
@@ -116,9 +115,41 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
+        String nombre = JOptionPane.showInputDialog(
+        this,
+        "Introduce tu nombre de usuario:",
+        "Registro",
+        JOptionPane.QUESTION_MESSAGE
+    );
+    if (nombre == null) return;  // canceló
+
+    // 2) Pedir contraseña de EXACTAMENTE 5 caracteres
+    String pass;
+    while (true) {
+        pass = JOptionPane.showInputDialog(
+            this,
+            "Introduce tu contraseña (5 caracteres):",
+            "Registro",
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if (pass == null) return;           // canceló
+        if (pass.length() == 5) break;      // OK
+        JOptionPane.showMessageDialog(
+            this,
+            "La contraseña debe tener exactamente 5 caracteres.",
+            "Error de formato",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
+
+  
+    gestor.crearUsuario(nombre, pass);
+
+   
+    String lista = gestor.obtenerListadoUsuarios();
+    labelUsuarios.setText("<html>" + lista.replace("\n", "<br/>") + "</html>");
+    }//GEN-LAST:event_RegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,9 +187,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Registro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
