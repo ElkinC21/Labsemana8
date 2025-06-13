@@ -160,6 +160,8 @@ private UsuarioManejo user;
 
     private void RankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RankingActionPerformed
     Rankingz ranking = new Rankingz();
+    this.setVisible(false);
+    ranking.setVisible(true);
     }//GEN-LAST:event_RankingActionPerformed
 
     private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed
