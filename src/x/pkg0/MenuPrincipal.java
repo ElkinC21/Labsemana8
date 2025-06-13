@@ -84,13 +84,13 @@ private UsuarioManejo user;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addGap(136, 136, 136))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,53 +109,8 @@ private UsuarioManejo user;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Main_x0 x0 = new Main_x0();
-        String nombre = JOptionPane.showInputDialog(
-        this,
-        "Introduce El Segundo Jugador:",
-        "Iniciar Sesion",
-        JOptionPane.PLAIN_MESSAGE
-    );
-    if (nombre == null) return;  
-
-   String pass = JOptionPane.showInputDialog(
-        this,
-        "Introduce tu contrasena:",
-        "Iniciar Sesion",
-        JOptionPane.PLAIN_MESSAGE
-    );
-    if (pass == null) return;    
-
-    
-    Registro[] lista = user.getUsuarios();
-    boolean coincide = false;
-    for (int i = 0; i < lista.length; i++) {
-        if (lista[i].getNombre().equals(nombre)
-         && lista[i].getpassword().equals(pass)) {
-            coincide = true;
-            break;
-        }
-    }
-
-    
-    if (coincide) {
-       
-        JOptionPane.showMessageDialog(
-            this,
-            "inicio de sesion exitoso",
-            "Bienvenido",
-            JOptionPane.PLAIN_MESSAGE);
-        
        this.setVisible(false);
         x0.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(
-            this,
-            "Usuario o contrasena incorrectos.",
-            "Error",
-            JOptionPane.PLAIN_MESSAGE
-        );
-        
-    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RankingActionPerformed
