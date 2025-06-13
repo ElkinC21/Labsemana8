@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+   user=new UsuarioManejo();
     }
 
     @SuppressWarnings("unchecked")
@@ -131,6 +132,20 @@ public class Menu extends javax.swing.JFrame {
     if (nombre == null) return;  
 
     
+    Registro[] existentes = user.getUsuarios();
+    for (int i = 0; i < existentes.length; i++) {
+        if (existentes[i].getNombre().equals(nombre)) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Usuario debe ser unico",
+                "Error",
+                JOptionPane.PLAIN_MESSAGE
+            );
+            return;  
+        }
+    }
+
+    
     String password;
     while (true) {
         password = JOptionPane.showInputDialog(
@@ -144,14 +159,15 @@ public class Menu extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(
             this,
             "La contrasena debe tener exactamente 5 caracteres.",
-            "Error de formato",
+            "Error",
             JOptionPane.PLAIN_MESSAGE
         );
     }
 
-  
+    
     user.crearUsuario(nombre, password);
 
+    
     }//GEN-LAST:event_RegistroActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -167,8 +183,7 @@ public class Menu extends javax.swing.JFrame {
     );
     if (nombre == null) return;  
 
-   
-    String pass = JOptionPane.showInputDialog(
+   String pass = JOptionPane.showInputDialog(
         this,
         "Introduce tu contrasena:",
         "Iniciar Sesion",

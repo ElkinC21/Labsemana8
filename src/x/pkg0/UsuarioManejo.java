@@ -45,4 +45,34 @@ public class UsuarioManejo {
     public Registro[] getUsuarios() {
         return usuarios;
     }
+public String Ranking() {
+    int n = usuarios.length;
+    if (n == 0) return "";
+    Registro[] copia = new Registro[n];
+    for (int i = 0; i < n; i++) {
+        copia[i] = usuarios[i];
+    }
+ for (int i = 0; i < n - 1; i++) {
+        int Max = i;
+        for (int j = i + 1; j < n; j++) {
+            if (copia[j].getPuntos() > copia[Max].getPuntos()) {
+                Max = j;
+  }
+        }
+        Registro guardar    = copia[i];
+        copia[i]         = copia[Max];
+        copia[Max]    = guardar;
+    }
+String texto = "";
+    for (int i = 0; i < n; i++) {
+        texto += "Nombre de usuario: " 
+              + copia[i].getNombre() 
+              + "    puntaje: " 
+              + copia[i].getPuntos();
+        if (i < n - 1) texto += "\n";
+    }
+    return texto;
+}
+
+
 }
