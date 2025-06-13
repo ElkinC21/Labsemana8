@@ -15,35 +15,91 @@ public class Main_x0 extends javax.swing.JFrame {
     private boolean ganar = false;
     private boolean x = true;
     private boolean o = false;
-    
-    
-    private JLabel[] lineas;
-   
-    public void botones(){
-        int  contador = 1;
-        for (int i = 0; i < 9; i++) {
-            lineas[i] = new JLabel("B"+contador++);
-        }
+    private int turnos = 0;
+    JLabel[] lineas;
+
+    public void botones() {
+        lineas = new JLabel[9];
+        lineas[0] = B1;
+        lineas[1] = B2;
+        lineas[2] = B3;
+        lineas[3] = B4;
+        lineas[4] = B5;
+        lineas[5] = B6;
+        lineas[6] = B7;
+        lineas[7] = B8;
+        lineas[8] = B9;
+
     }
-    
-    public void clicks(int casilla){
-    
-        if(x){
-        lineas[casilla].setText("X");
-        x=false;
-        o=true;
-        }else if(o){
-        lineas[casilla].setText("O");
-        x=true;
-        o=false;
+
+    public int clicks(int casilla) {
+        if (!lineas[casilla].getText().equals("X") && !lineas[casilla].getText().equals("O")) {
+            if (x) {
+                lineas[casilla].setText("X");
+                x = false;
+                o = true;
+                turnos++;
+                ganador();
+                return turnos;
+            } else if (o) {
+                lineas[casilla].setText("O");
+                x = true;
+                o = false;
+                turnos++;
+                ganador();
+                return turnos;
+            }
         }
+        return 0;
     }
-    
-    
-    
-    
+
+    private void ganador() {
+        botones();
+        int[][] combinaciones = {
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8},
+            {0, 3, 5},
+            {1, 4, 7},
+            {2, 5, 8},
+            {0, 4, 8},
+            {2, 4, 6},};
+
+        for (int[] combo : combinaciones) {
+            int a = combo[0];
+            int b = combo[1];
+            int c = combo[2];
+
+            if (!lineas[a].getText().isEmpty()
+                    && lineas[a].getText().equals(lineas[b].getText())
+                    && lineas[b].getText().equals(lineas[c].getText())) {
+
+                ganar = true;
+                String ganador = lineas[a].getText();
+
+                javax.swing.JOptionPane.showMessageDialog(this, "¡Ha ganado el jugador " + ganador + "!");
+
+                resaltarLineaGanadora(a, b, c);
+                return;
+            }
+        }
+
+        if (!ganar && turnos == 9) {
+            javax.swing.JOptionPane.showMessageDialog(this, "¡Es un empate!");
+            ganar = true;
+        }
+
+    }
+
+    private void resaltarLineaGanadora(int a, int b, int c) {
+        lineas[a].setBackground(java.awt.Color.GREEN);
+        lineas[b].setBackground(java.awt.Color.GREEN);
+        lineas[c].setBackground(java.awt.Color.GREEN);
+    }
+
     public Main_x0() {
         initComponents();
+        this.setLocationRelativeTo(null);
         botones();
     }
 
@@ -235,44 +291,44 @@ public class Main_x0 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B9MousePressed
-        clicks(9);
+        clicks(8);
     }//GEN-LAST:event_B9MousePressed
 
     private void B8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B8MousePressed
-       clicks(8);
+        clicks(7);
     }//GEN-LAST:event_B8MousePressed
 
     private void B7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B7MousePressed
-        
-        clicks(7);
+
+        clicks(6);
     }//GEN-LAST:event_B7MousePressed
 
     private void B1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MousePressed
-        clicks(1);
+        clicks(0);
     }//GEN-LAST:event_B1MousePressed
 
     private void B5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MousePressed
-        clicks(5);
+        clicks(4);
     }//GEN-LAST:event_B5MousePressed
 
     private void B4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B4MousePressed
-       clicks(4);
+        clicks(3);
     }//GEN-LAST:event_B4MousePressed
 
     private void B3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MousePressed
-        clicks(3);
+        clicks(2);
     }//GEN-LAST:event_B3MousePressed
 
     private void B6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B6MousePressed
-        clicks(6);
+        clicks(5);
     }//GEN-LAST:event_B6MousePressed
 
     private void jLabel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MousePressed
-       
+
     }//GEN-LAST:event_jLabel10MousePressed
 
     private void B2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MousePressed
-        clicks(2);
+        clicks(1);
     }//GEN-LAST:event_B2MousePressed
 
     /**
@@ -307,7 +363,7 @@ public class Main_x0 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main_x0().setVisible(true);
-                
+
             }
         });
     }

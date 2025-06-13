@@ -3,15 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package x.pkg0;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elkin
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
+    private UsuarioManejo user;
+    private JLabel labelUsuarios;
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -144,10 +147,10 @@ public class Menu extends javax.swing.JFrame {
     }
 
   
-    gestor.crearUsuario(nombre, pass);
+    user.crearUsuario(nombre, pass);
 
    
-    String lista = gestor.obtenerListadoUsuarios();
+    String lista = user.obtenerListadoUsuarios();
     labelUsuarios.setText("<html>" + lista.replace("\n", "<br/>") + "</html>");
     }//GEN-LAST:event_RegistroActionPerformed
 
