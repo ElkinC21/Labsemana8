@@ -5,6 +5,8 @@
 package x.pkg0;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -54,42 +56,41 @@ public class Main_x0 extends javax.swing.JFrame {
     }
 
     private void ganador() {
-        botones();
-        int[][] combinaciones = {
-            {0, 1, 2},
-            {3, 4, 5},
-            {6, 7, 8},
-            {0, 3, 5},
-            {1, 4, 7},
-            {2, 5, 8},
-            {0, 4, 8},
-            {2, 4, 6},};
+    int[][] combinaciones = {
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+        {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+        {0, 4, 8}, {2, 4, 6}
+    };
 
-        for (int[] combo : combinaciones) {
-            int a = combo[0];
-            int b = combo[1];
-            int c = combo[2];
+    for (int[] combo : combinaciones) {
+        if (!lineas[combo[0]].getText().isEmpty() &&
+            lineas[combo[0]].getText().equals(lineas[combo[1]].getText()) &&
+            lineas[combo[1]].getText().equals(lineas[combo[2]].getText())) {
 
-            if (!lineas[a].getText().isEmpty()
-                    && lineas[a].getText().equals(lineas[b].getText())
-                    && lineas[b].getText().equals(lineas[c].getText())) {
-
-                ganar = true;
-                String ganador = lineas[a].getText();
-
-                javax.swing.JOptionPane.showMessageDialog(this, "¡Ha ganado el jugador " + ganador + "!");
-
-                resaltarLineaGanadora(a, b, c);
-                return;
-            }
+            this.ganar = true;
+            String simboloGanador = lineas[combo[0]].getText();
+            
+            resaltarLineaGanadora(combo[0], combo[1], combo[2]);
+            javax.swing.JOptionPane.showMessageDialog(this, "¡Ha ganado el jugador " + simboloGanador + "!");
+            
+            javax.swing.Timer timer = new javax.swing.Timer(2000, e -> otraVez());
+            timer.setRepeats(false);
+            timer.start();
+            
+            return;
         }
-
-        if (!ganar && turnos == 9) {
-            javax.swing.JOptionPane.showMessageDialog(this, "¡Es un empate!");
-            ganar = true;
-        }
-
     }
+
+    
+    if (!this.ganar && this.turnos == 9) {
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Es un empate!");
+        this.ganar = true; 
+        
+        javax.swing.Timer timer = new javax.swing.Timer(2000, e -> reiniciar());
+        timer.setRepeats(false);
+        timer.start();
+    }
+}
 
     private void resaltarLineaGanadora(int a, int b, int c) {
         lineas[a].setBackground(java.awt.Color.GREEN);
@@ -97,6 +98,32 @@ public class Main_x0 extends javax.swing.JFrame {
         lineas[c].setBackground(java.awt.Color.GREEN);
     }
 
+    private void reiniciar(){
+    ganar=false;
+    turnos = 0;
+    x = true;
+    o = false;
+    
+        for (int i = 0; i < lineas.length; i++) {
+            lineas[i].setText("");
+            lineas[i].setBackground(java.awt.Color.WHITE);
+        }
+    }
+    
+    private void otraVez() {
+    int respuesta = javax.swing.JOptionPane.showConfirmDialog(
+            this,                              
+            "¿Deseas jugar otra partida?",      
+            "Fin del Juego",                   
+            javax.swing.JOptionPane.YES_NO_OPTION 
+    );
+    if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
+        reiniciar();
+    } else {
+        System.exit(0); 
+    }
+}
+    
     public Main_x0() {
         initComponents();
         this.setLocationRelativeTo(null);
